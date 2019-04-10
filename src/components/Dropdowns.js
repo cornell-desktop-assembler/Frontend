@@ -2,28 +2,49 @@ import React, { Component } from 'react';
 import DropdownButton from "react-bootstrap/DropdownButton";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 class Dropdowns extends Component {
+
     render() {
         return (
             <div class="dropdown-group">
-                <ButtonGroup size="lg" block>
-                    <DropdownButton as={ButtonGroup} variant={'primary'} size="lg" title="Skin Tone: None" id="bg-nested-dropdown">
-                        <Dropdown.Item eventKey="1">Dark</Dropdown.Item>
-                        <Dropdown.Item eventKey="2">Light</Dropdown.Item>
+                <ButtonGroup size="lg" justified>
+                    <DropdownButton
+                        block
+                        as={ButtonGroup}
+                        variant={'primary'}
+                        title={"Skin Tone: " + this.props.skinTone}
+                        id="bg-nested-dropdown">
+                        <Dropdown.Item eventKey="Not Selected" onSelect={this.props.onChangeSkinTone}>Not Selected</Dropdown.Item>
+                        <Dropdown.Divider />
+                        {this.props.options[0].map(option => (
+                            <Dropdown.Item eventKey={option} onSelect={this.props.onChangeSkinTone}>{option}</Dropdown.Item>
+                        ))}
                     </DropdownButton>
-                    <DropdownButton as={ButtonGroup} variant={'warning'} size="lg" title="Skin Type: None" id="bg-nested-dropdown">
-                        <Dropdown.Item eventKey="1">Oily</Dropdown.Item>
-                        <Dropdown.Item eventKey="2">Moderate</Dropdown.Item>
-                        <Dropdown.Item eventKey="3">Dry</Dropdown.Item>
+                    <DropdownButton
+                        block
+                        as={ButtonGroup}
+                        variant={'warning'}
+                        title={"Skin Type: " + this.props.skinType}
+                        id="bg-nested-dropdown">
+                        <Dropdown.Item eventKey="Not Selected" onSelect={this.props.onChangeSkinType}>Not Selected</Dropdown.Item>
+                        <Dropdown.Divider />
+                        {this.props.options[1].map(option => (
+                            <Dropdown.Item eventKey={option} onSelect={this.props.onChangeSkinType}>{option}</Dropdown.Item>
+                        ))}
                     </DropdownButton>
-                    <DropdownButton as={ButtonGroup} variant={'danger'} size="lg" title="Eye Color: None" id="bg-nested-dropdown">
-                        <Dropdown.Item eventKey="1">Black</Dropdown.Item>
-                        <Dropdown.Item eventKey="2">Brown</Dropdown.Item>
-                        <Dropdown.Item eventKey="3">Green</Dropdown.Item>
-                        <Dropdown.Item eventKey="4">Blue</Dropdown.Item>
-                        <Dropdown.Item eventKey="5">Grey</Dropdown.Item>
-                        <Dropdown.Item eventKey="6">White</Dropdown.Item>
+                    <DropdownButton
+                        as={ButtonGroup}
+                        variant={'danger'}
+                        title={"Eye Color: " + this.props.eyeColor}
+                        id="bg-nested-dropdown">
+                        <Dropdown.Item eventKey="Not Selected" onSelect={this.props.onChangeEyeColor}>Not Selected</Dropdown.Item>
+                        <Dropdown.Divider />
+                        {this.props.options[2].map(option => (
+                            <Dropdown.Item eventKey={option} onSelect={this.props.onChangeEyeColor}>{option}</Dropdown.Item>
+                        ))}
                     </DropdownButton>
                 </ButtonGroup>
             </div>
