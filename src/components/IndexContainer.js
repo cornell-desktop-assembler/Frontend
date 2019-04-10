@@ -7,11 +7,32 @@ import BrandInput from './BrandInput.js'
 import '../App.css'
 
 class IndexContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            characteristicInput: '',
+            skinTone: '',
+            skinType: '',
+            eyeColor: '',
+            brandInput: ''
+        }
+    }
+
+    handleChangeCharacteristicInput(str) {
+        this.setState({
+            characteristicInput: str
+        })
+    }
+
     render() {
+        let characteristicInputs = this.state.characteristicInput
         return (
             <Container >
                 <Row>
-                    <CharacteristicInput/>
+                    <CharacteristicInput
+                        data = {characteristicInputs}
+                        onChange = {str => this.handleChangeCharacteristicInput(str)}
+                    />
                 </Row>
                 <Row>
                     <BrandInput/>
