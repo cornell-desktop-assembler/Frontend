@@ -16,7 +16,7 @@ class App extends Component {
         </header>
         <body>
           <div className="lip-background">
-              <div className="lip-container">
+              <div className="lip-container" style={{marginTop: 3.5 + 'em'}}>
                   {/*<img src="./title.png" alt="Forest" width="170" height="100"/>*/}
                   <img src={require('./title.png')} />
                   <IndexContainer/>

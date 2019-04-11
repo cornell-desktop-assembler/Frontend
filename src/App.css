@@ -30,6 +30,9 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
+
+  /*background-color: grey;*/
+  /*opacity: 0.6*/
 }
 
 .lip-title {
@@ -53,5 +56,25 @@ CharacteristicInput {
 
 BrandInput {
   margin: 0 auto;
+}
+
+.form-text {
+  text-shadow: 2px 2px 2px black;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+}
+
+.dropdown-toggle {
+  width: 200px;
+}
+
+.dropdown-menu {
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.dropdown-item {
+  width: 230px;
 }
 

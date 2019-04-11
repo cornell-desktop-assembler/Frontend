@@ -14,9 +14,10 @@ class IndexContainer extends Component {
         this.state = {
             characteristicInput: '',
             brandInput: '',
-            skinTone: 'Not Selected',
-            skinType: 'Not Selected',
-            eyeColor: 'Not Selected',
+            skinTone: 'N/A',
+            skinType: 'N/A',
+            hairColor: 'N/A',
+            eyeColor: 'N/A',
             submitDisabled: true,
             submitColor: 'light'
         };
@@ -24,20 +25,22 @@ class IndexContainer extends Component {
         this.handleChangeBrandInput = this.handleChangeBrandInput.bind(this);
         this.handleChangeSkinTone = this.handleChangeSkinTone.bind(this);
         this.handleChangeSkinType = this.handleChangeSkinType.bind(this);
+        this.handleChangeHairColor = this.handleChangeHairColor.bind(this);
         this.handleChangeEyeColor = this.handleChangeEyeColor.bind(this);
-        this.onClick = this.handleSubmit.bind(this);
+        this.onClickSubmit = this.handleSubmit.bind(this);
 
-        this.options = [['Dark', 'Light'],
-            ['Dry', 'Moderate', 'Oily'],
-            ['Black', 'Brown', 'Green', 'Blue', 'Grey', 'White']]
+        this.options = [['Dark', 'Light', 'Ebony', 'Deep', 'Medium', 'Porcelain', 'Fair', 'Olive', 'Tan'],
+            ['Dry', 'Normal', 'Oily', 'Combination'],
+            ['Gray', 'Auburn', 'Blonde', 'Black', 'Black', 'Red', 'Brunette'],
+            ['Brown', 'Green', 'Blue', 'Gray', 'Hazel']]
     }
 
     checkViability() {
         let viable = !(this.state.characteristicInput === '' &&
-            this.state.brandInput === '' &&
-            this.state.skinTone === 'Not Selected' &&
-            this.state.skinType === 'Not Selected' &&
-            this.state.eyeColor === 'Not Selected');
+            this.state.skinTone === 'N/A' &&
+            this.state.skinType === 'N/A' &&
+            this.state.hairColor === 'N/A' &&
+            this.state.eyeColor === 'N/A');
         this.setState({
             submitDisabled: !viable,
             submitColor: viable? 'success' : 'light'
@@ -68,6 +71,12 @@ class IndexContainer extends Component {
         }, this.checkViability);
     }
 
+    handleChangeHairColor(eventKey) {
+        this.setState({
+            hairColor: eventKey
+        }, this.checkViability);
+    }
+
     handleChangeEyeColor(eventKey) {
         this.setState({
             eyeColor: eventKey
@@ -84,16 +93,17 @@ class IndexContainer extends Component {
 
         //TODO: connect to backend
         alert('Your query is: \n' +
-              'keywords: ' + characteristicInputs + '\n' +
-              'brand: ' + brandInputs + '\n' +
-              'skin tone: ' + this.state.skinTone + '\n' +
-              'skin type: ' + this.state.skinType + '\n' +
-              'eye color: ' + this.state.eyeColor)
+              '-- Keywords: ' + characteristicInputs + '\n' +
+              '-- Brand: ' + brandInputs + '\n' +
+              '-- Skin tone: ' + this.state.skinTone + '\n' +
+              '-- Skin type: ' + this.state.skinType + '\n' +
+              '-- Hair color: ' + this.state.hairColor + '\n' +
+              '-- Eye color: ' + this.state.eyeColor)
     }
 
     render() {
         return (
-            <Container >
+            <Container>
                 <Row>
                     <Col>
                         <CharacteristicInput
@@ -116,21 +126,23 @@ class IndexContainer extends Component {
                             options={this.options}
                             skinTone={this.state.skinTone}
                             skinType={this.state.skinType}
+                            hairColor={this.state.hairColor}
                             eyeColor={this.state.eyeColor}
                             onChangeSkinTone={this.handleChangeSkinTone}
                             onChangeSkinType={this.handleChangeSkinType}
+                            onChangeHairColor={this.handleChangeHairColor}
                             onChangeEyeColor={this.handleChangeEyeColor}
                         />
                     </Col>
                 </Row>
-                <div style={{marginTop: 4 + 'em'}}>
+                <div style={{marginTop: 5.5 + 'em'}}>
                     <Row>
                         <Col>
                             <Button
                                 disabled={this.state.submitDisabled}
                                 variant={this.state.submitColor}
                                 size="lg"
-                                onClick={this.onClick}
+                                onClick={this.onClickSubmit}
                             >Find your match!</Button>
                         </Col>
                     </Row>
