@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Dropdowns from './Dropdowns.js'
 import CharacteristicInput from './CharacteristicInput.js'
 import BrandInput from './BrandInput.js'
-import '../App.css'
+import '../css/App.css'
 import Button from "react-bootstrap/Button";
 
 class IndexContainer extends Component {
@@ -43,7 +43,7 @@ class IndexContainer extends Component {
             this.state.eyeColor === 'N/A');
         this.setState({
             submitDisabled: !viable,
-            submitColor: viable? 'success' : 'light'
+            submitColor: viable? 'light' : 'light'
         });
     }
 
@@ -92,13 +92,14 @@ class IndexContainer extends Component {
             .split(' ');
 
         //TODO: connect to backend
-        alert('Your query is: \n' +
+        let query = 'Your query is: \n' +
               '-- Keywords: ' + characteristicInputs + '\n' +
               '-- Brand: ' + brandInputs + '\n' +
               '-- Skin tone: ' + this.state.skinTone + '\n' +
               '-- Skin type: ' + this.state.skinType + '\n' +
               '-- Hair color: ' + this.state.hairColor + '\n' +
-              '-- Eye color: ' + this.state.eyeColor)
+              '-- Eye color: ' + this.state.eyeColor
+        this.props.onClick(query)
     }
 
     render() {
@@ -135,7 +136,7 @@ class IndexContainer extends Component {
                         />
                     </Col>
                 </Row>
-                <div style={{marginTop: 5.5 + 'em'}}>
+                <div style={{marginTop: 5.5 + 'em', marginBottom: 5.5 + 'em'}}>
                     <Row>
                         <Col>
                             <Button
